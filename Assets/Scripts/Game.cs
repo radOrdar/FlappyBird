@@ -4,31 +4,40 @@ using UnityEngine.InputSystem;
 
 public class Game : SingletonMonoBehaviour<Game>
 {
+    public enum GameState
+    {
+        NotStarted,
+        Active,
+        GameOver
+    }
+
     [SerializeField] private Bird birdPf;
     [SerializeField] private ObstacleGenerator obstacleGeneratorPf;
 
     public int Score { get; private set; }
     public int HighScore { get; private set; }
-    public bool IsGameOver { get; private set; }
+    public GameState CurrentGameState;
 
     public static event Action<int> OnScoreChanged;
     public static event Action OnGameOver;
     public static event Action OnGameStarted;
 
-    private bool isGameStarted;
 
     protected override void Awake()
     {
         base.Awake();
+        CurrentGameState = GameState.NotStarted;
         HighScore = PlayerPrefs.GetInt("highscore", 0);
     }
 
     private void Update()
     {
-        if (isGameStarted)
+        if (CurrentGameState != GameState.NotStarted)
         {
             return;
         }
+
+        bool isGameStarted = default;
 #if UNITY_EDITOR
         isGameStarted = Mouse.current.leftButton.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame;
 #elif UNITY_ANDROID
@@ -39,6 +48,7 @@ public class Game : SingletonMonoBehaviour<Game>
             Instantiate(birdPf);
             Instantiate(obstacleGeneratorPf);
             OnGameStarted?.Invoke();
+            CurrentGameState = GameState.Active;
         }
     }
 
@@ -50,7 +60,7 @@ public class Game : SingletonMonoBehaviour<Game>
 
     public void GG()
     {
-        if (IsGameOver) { return; }
+        if (CurrentGameState == GameState.GameOver) { return; }
 
         if (Score > HighScore)
         {
@@ -58,7 +68,7 @@ public class Game : SingletonMonoBehaviour<Game>
             PlayerPrefs.SetInt("highscore", HighScore);
         }
 
-        IsGameOver = true;
+        CurrentGameState = GameState.GameOver;
         OnGameOver?.Invoke();
     }
 }

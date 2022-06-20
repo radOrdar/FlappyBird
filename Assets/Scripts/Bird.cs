@@ -25,7 +25,7 @@ public class Bird : MonoBehaviour
 
     private void Update()
     {
-        if (Game.Instance.IsGameOver)
+        if (Game.Instance.CurrentGameState == Game.GameState.GameOver)
         {
             animator.enabled = false;
         } else
@@ -59,7 +59,7 @@ public class Bird : MonoBehaviour
 
     private void OnTriggerEnter2D()
     {
-        if (Game.Instance.IsGameOver) { return; }
+        if (Game.Instance.CurrentGameState == Game.GameState.GameOver) { return; }
 
         Game.Instance.GG();
         AudioManager.Instance.PlaySound(AudioManager.ClipName.Hit);
@@ -71,7 +71,7 @@ public class Bird : MonoBehaviour
 
     private void OnCollisionEnter2D()
     {
-        if (Game.Instance.IsGameOver) { return; }
+        if (Game.Instance.CurrentGameState == Game.GameState.GameOver) { return; }
 
         Game.Instance.GG();
         AudioManager.Instance.PlaySound(AudioManager.ClipName.Hit);

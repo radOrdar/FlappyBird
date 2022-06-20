@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : SingletonMonoBehaviour<AudioManager> {
-    public enum ClipName {
+public class AudioManager : SingletonMonoBehaviour<AudioManager>
+{
+    public enum ClipName
+    {
         Die,
         Hit,
         Point,
@@ -14,17 +16,23 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager> {
     private Dictionary<ClipName, AudioClip> soundDictionary = new Dictionary<ClipName, AudioClip>();
     private AudioSource audioSource;
 
-    protected override void Awake() {
-        if (Instance == null) {
+    protected override void Awake()
+    {
+        if (Instance == null)
+        {
             DontDestroyOnLoad(gameObject);
-        } else {
+        } else
+        {
             Destroy(gameObject);
             return;
         }
+
         base.Awake();
 
-        foreach (var audioClip in Resources.LoadAll<AudioClip>("Audio")) {
-            if (Enum.TryParse(audioClip.name, out ClipName clipName)) {
+        foreach (var audioClip in Resources.LoadAll<AudioClip>("Audio"))
+        {
+            if (Enum.TryParse(audioClip.name, out ClipName clipName))
+            {
                 soundDictionary.Add(clipName, audioClip);
             }
         }
@@ -32,7 +40,8 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager> {
         audioSource = gameObject.AddComponent<AudioSource>();
     }
 
-    public void PlaySound(ClipName clipName) {
+    public void PlaySound(ClipName clipName)
+    {
         audioSource.PlayOneShot(soundDictionary[clipName]);
     }
 }
