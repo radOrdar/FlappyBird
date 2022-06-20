@@ -586,7 +586,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 9169604529815013747, guid: 8e7dc68f1e3eb9546825531b4d7d8fb2, type: 3}
+  m_Sprite: {fileID: -3660761718774606069, guid: 888f86d46a79cf74d87b126923ce01ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -635,6 +635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   birdPf: {fileID: 4352939454862194337, guid: 27b0b93be816b0f4e91c68e9a27a2873, type: 3}
   obstacleGeneratorPf: {fileID: 7465044157296824258, guid: 15b4e5973e17e124f84a13811b98f3a3, type: 3}
+  CurrentGameState: 0
 --- !u!4 &362437942
 Transform:
   m_ObjectHideFlags: 0
@@ -850,7 +851,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.5625, y: 2.1875}
+    oldSize: {x: 6.72, y: 2.24}
     newSize: {x: 6.5625, y: 2.1875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1638,7 +1639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2010964925
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1798,7 +1799,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8713271513713668084, guid: 8e7dc68f1e3eb9546825531b4d7d8fb2, type: 3}
+  m_Sprite: {fileID: 8023267310224585080, guid: 888f86d46a79cf74d87b126923ce01ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
